@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destino Turístico: JSON Fetch</title>
+    <style>
+
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f4f9; display: flex; justify-content: center; padding: 20px; }
+        .card { padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 600px; overflow: hidden; }
+        .card-header img { width: 100%; height: 250px; object-fit: cover; }
+        .card-body { padding: 20px; }
+        h1 { color: #2c3e50; margin-top: 0; }
+        .badge { background: #3498db; color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.8em; }
+        ul { color: #555; }
+        .price-box { background: #e8f6f3; padding: 10px; border-radius: 5px; margin-top: 15px; border-left: 5px solid #1abc9c; }
+    </style>
+</head>
+<body>
+
+    <div id="tourist-container">
+        <p>Cargando datos...</p>
+    </div>
+
+    <script>
+
+        const jsonUrl = './turismo.json';
+
+
+        async function cargarDatos() {
+            try {
+
+                const respuesta = await fetch(jsonUrl);
+                
+
+                if (!respuesta.ok) throw new Error("No se pudo cargar el archivo JSON");
+                const data = await respuesta.json();
+
+
+                mostrarEnPantalla(data);
+
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('tourist-container').innerHTML = `<p style="color:red">Error cargando datos. Asegúrate de usar un servidor local.</p>`;
+            }
+        }
+
+        function mostrarEnPantalla(lugar) {
+            const container = document.getElementById('tourist-container');
+            
+
+            const listaActividades = lugar.actividades.map(act => `<li>${act}</li>`).join('');
+            const listaComida = lugar.gastronomia.map(comida => `<li>${comida}</li>`).join('');
+
+
+            container.innerHTML = `
+                <div class="card">
+                    <div class="card-header">
+                        <img src="${lugar.imagen}" alt="${lugar.nombre}">
+                    </div>
+                    <div class="card-body">
+                        <h1>${lugar.nombre} <span class="badge">${lugar.ubicacion}</span></h1>
+                        <p><em>${lugar.descripcion}</em></p>
+                        <hr>
+                        
+                        <h3>📍 Actividades Principales</h3>
+                        <ul>${listaActividades}</ul>
+                        
+                        <h3>🍲 Gastronomía</h3>
+                        <ul>${listaComida}</ul>
+
+                        <div class="price-box">
+                            <strong>💰 Precios estimados:</strong><br>
+                            Tour 1 día: ${lugar.precios.tour_un_dia}<br>
+                            Tour 3 días: ${lugar.precios.tour_tres_dias}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+
+        cargarDatos();
+    </script>
+</body>
+</html>

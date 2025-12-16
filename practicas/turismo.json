@@ -1,0 +1,25 @@
+{
+  "nombre": "Salar de Uyuni",
+  "ubicacion": "Potosí, Bolivia",
+  "descripcion": "El desierto de sal más grande del mundo, ofreciendo un paisaje espejo único cuando llueve y una blancura cegadora cuando está seco.",
+  "detalles": {
+    "altitud": "3,656 m s.n.m.",
+    "temperatura_promedio": "20°C (día) / -10°C (noche)"
+  },
+  "actividades": [
+    "Fotografía de perspectiva",
+    "Visita a la Isla Incahuasi",
+    "Observación de estrellas",
+    "Visita al Cementerio de Trenes"
+  ],
+  "gastronomia": [
+    "Kalapurca (sopa con piedra volcánica)",
+    "Carne de llama",
+    "Quinoa real"
+  ],
+  "precios": {
+    "tour_un_dia": "USD 30 - 50",
+    "tour_tres_dias": "USD 150 - 200"
+  },
+  "imagen": "https://images.unsplash.com/photo-1534234828563-0251147050e6?q=80&w=1000&auto=format&fit=crop"
+}

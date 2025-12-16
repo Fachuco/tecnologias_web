@@ -28,9 +28,68 @@
                 <p>Ejercicios de Js</p>
                 <span>📅 Fecha: 12 Dic</span>
             </a>
+
+            <a href="practicas/practica3.html" class="card">
+                <h3>Práctica 3</h3>
+                <p>Ejercicios de creacion y consumo de una API con JSON</p>
+                <span>📅 Fecha: 17 Dic</span>
+            </a>
             
             </div>
     </div>
+
+    <script>
+        class Persona {
+            constructor(nombre, apellido, gmail, fechaNacimiento) {
+                this.nombre = nombre;
+                this.apellido = apellido;
+                this.gmail = gmail;
+                this.fechaNacimiento = fechaNacimiento;
+            }
+        edad() {
+          const hoy = new Date();
+          const nacimiento = new Date(this.fechaNacimiento);
+          let edad = hoy.getFullYear() - nacimiento.getFullYear();
+          const mes = hoy.getMonth() - nacimiento.getMonth();
+            if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
+            edad--;
+            }
+    return edad;
+  }
+  mostrar() {
+    console.log(
+      `Nombre: ${this.nombre} ${this.apellido}, Gmail: ${this.gmail}, Edad: ${this.edad()}`
+    );
+  }
+}
+class Estudiante extends Persona {
+  constructor(nombre, apellido, gmail, fechaNacimiento, carrera) {
+    super(nombre, apellido, gmail, fechaNacimiento);
+    this.carrera = carrera;
+  }
+  mostrar() {
+    console.log(
+      `Nombre: ${this.nombre} ${this.apellido}, Gmail: ${this.gmail}, Edad: ${this.edad()}, Carrera: ${this.carrera}`
+    );
+  }
+}
+const persona1 = new Persona(
+  "Fabrizio",
+  "Stevenson",
+  "fa.stevenson@gmail.com",
+  "2003-12-19"
+);
+const estudiante1 = new Estudiante(
+ "Fabrizio",
+  "Stevenson",
+  "fa.stevenson@gmail.com",
+  "2003-12-19",
+  "Ingeniería en Sistemas"
+);
+persona1.mostrar();
+estudiante1.mostrar();
+
+    </script>
 
 </body>
 </html>
